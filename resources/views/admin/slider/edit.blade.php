@@ -15,7 +15,7 @@
                         <form action="{{ route('admin.slider.update', basename($slide)) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <h3>Изменить или удалить</h3>
-                            <input name="slide" type="file" class="form-control" id="inputGroupFile02">
+                            <input name='slide' type="file" class="form-control" id="inputGroupFile02">
                             @error('slide')
                             <div class="form-text text-danger">{{$message}}</div>
                             @enderror

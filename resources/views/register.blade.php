@@ -7,9 +7,9 @@
                 <form action="{{ route('register') }}" method="POST">
                     @csrf
                     <div class="mb-3">
-                        <label for="name" class="form-label">Никнейм</label>
+                        <label for="name" class="form-label">Имя</label>
                         <input value="{{ old('name') }}" name="name" class="form-control" id="name">
-                        @error('email')
+                        @error('name')
                         <div id="emailError" class="form-text text-danger">{{$message}}</div>
                         @enderror
                     </div>

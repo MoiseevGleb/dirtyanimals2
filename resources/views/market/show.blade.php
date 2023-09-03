@@ -1,18 +1,12 @@
 @extends('layouts.main')
+@section('title')
+    Dirty Animals | {{ $product->title }}
+@endsection
 
 @section('content')
 <div class="container mt-2">
     <div class="row">
         <div class="col-md-6 overflow-hidden">
-<!--            <div class="swiper-product">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide rounded-3" style="background-image: url(#);"></div>
-                    <div class="swiper-slide rounded-3" style="background-image: url(#);"></div>
-                </div>
-                &lt;!&ndash; If we need pagination &ndash;&gt;
-                <div class="swiper-pagination"></div>
-            </div>-->
-
             <div id="carouselExampleIndicators" class="carousel slide">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>

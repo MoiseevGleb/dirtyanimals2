@@ -4,6 +4,8 @@
 @section('content')
     <h2 class="mb-5">Добавить слайд</h2>
 
+    <p>Рекомендуемое разрешение: 1920х450</p>
+
     <div class="input-group mb-3">
         <form action="{{ route('admin.slider.store') }}" method="POST" enctype="multipart/form-data">
             @csrf

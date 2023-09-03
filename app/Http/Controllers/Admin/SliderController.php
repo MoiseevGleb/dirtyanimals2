@@ -32,7 +32,8 @@ class SliderController extends Controller
         $slide = $request->validated()['slide'];
 
         $slideName = $slide->getClientOriginalName();
-        $fullSlideName = date('d-m-Y-H-i-s') . '_' .$slideName;
+        $datetime = (new \DateTime("now", new \DateTimeZone('Europe/Moscow')))->format('d-m-Y-H-i-s');
+        $fullSlideName = $datetime . '_' . $slideName;
 
         Storage::putFileAs('images/slider', $slide, $fullSlideName);
 
@@ -44,7 +45,8 @@ class SliderController extends Controller
         $newSlide = $request->validated()['slide'];
 
         $slideName = $newSlide->getClientOriginalName();
-        $fullSlideName = date('d-m-Y-H-i-s') . '_' . $slideName;
+        $datetime = strstr($slide, '_', true);
+        $fullSlideName = $datetime . '_' . $slideName;
 
         Storage::delete('images/slider/' . $slide);
         Storage::putFileAs('images/slider', $newSlide, $fullSlideName);

@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title', 'Dirty Animals')</title>
     @vite(['resources/js/app.js', 'resources/sass/app.scss', 'resources/css/app.css'])
+
 </head>
 <body>
 <div class="d-flex flex-column min-vh-100">
@@ -32,7 +33,7 @@
                         <a class="nav-link {{ request()->routeIs('market.*') ? 'active' : '' }}" aria-current="page" href="{{ route('market.index') }}">Магазин</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ request()->routeIs('news') ? 'active' : '' }}" aria-current="page" href="#">Новости</a>
+                        <a class="nav-link {{ request()->routeIs('news.*') ? 'active' : '' }}" aria-current="page" href="{{ route('news.index') }}">Новости</a>
                     </li>
                     <li class="nav-item dropdown {{ request()->routeIs('games.*') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -40,7 +41,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item" href="#"><i class="bi bi-dice-5 mx-2"></i>Рулетка</a>
+                                <a class="dropdown-item" href="{{ route('roulette.index') }}"><i class="bi bi-dice-5 mx-2"></i>Рулетка</a>
                             </li>
                             <li><hr class="dropdown-divider"></li>
                             <li>
@@ -53,7 +54,9 @@
                 <div class="d-flex">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->routeIs('cart') ? 'active' : '' }}" aria-current="page" href="#"><i class="bi bi-cart mx-2"></i>Корзина (1)</a>
+                            <a class="nav-link {{ request()->routeIs('cart') ? 'active' : '' }}" aria-current="page" href="#">
+                                <i class="bi bi-cart mx-2"></i>Корзина (1)
+                            </a>
                         </li>
                         @auth
                             <li class="nav-item dropdown">
@@ -92,8 +95,8 @@
             </div>
         </div>
     </nav>
-
-    <div  id="app" class="flex-grow-1">
+    <div id="sound"></div>
+    <div id="app" class="flex-grow-1">
         @yield('content')
     </div>
 
@@ -103,5 +106,19 @@
         </div>
     </nav>
 </div>
+<script>
+    let btns = document.querySelectorAll('.nav-link, .dropdown-item')
+
+    for (const btn of btns) {
+        btn.onmouseenter = function() {
+            sound.innerHTML = "<iframe src='{{ asset('storage/sounds/gtasa_hover.mp3') }}' allow='autoplay' style='display: none'></iframe>";
+        }
+        btn.addEventListener('mousedown', function(event) {
+            event.preventDefault();
+            sound.innerHTML = "<iframe src='{{ asset('storage/sounds/gtasa_click.mp3') }}' allow='autoplay' style='display: none'></iframe>";
+            event.returnValue = true;
+        });
+    }
+</script>
 </body>
 </html>

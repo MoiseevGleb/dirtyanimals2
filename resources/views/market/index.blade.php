@@ -11,7 +11,7 @@
             </div>
             <div class="carousel-inner">
                 @foreach($slides as $k => $slide)
-                    <div class="carousel-item {{ $k === 0 ? 'active' : '' }}" data-bs-interval="3500" style="height: 450px">
+                    <div class="carousel-item {{ $k === 0 ? 'active' : '' }}" data-bs-interval="5000" style="height: 450px">
                         <img src="{{ asset($slide) }}" class="d-block" alt="{{ basename($slide) }}">
                     </div>
                 @endforeach

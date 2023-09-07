@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RouletteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -56,3 +57,16 @@ Route::group([
         Route::post('/', 'store')->name('store');
     });
 });
+
+Route::group([
+    'middleware' => 'auth',
+    'controller' => 'App\Http\Controllers\NewsController',
+    'prefix' => 'news',
+    'as' => 'news.'
+], function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/get-news', 'getNews')->name('get-news');
+    Route::post('/comments', 'storeComment')->middleware('auth')->name('comment.store');
+});
+
+Route::get('/roulette', [RouletteController::class, 'index'])->name('roulette.index');

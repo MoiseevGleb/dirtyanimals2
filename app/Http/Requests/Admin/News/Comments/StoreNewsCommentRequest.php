@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin\News\Comments;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SliderStoreRequest extends FormRequest
+class StoreNewsCommentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return auth()->user()->role === 'admin';
+        return auth()->check();
     }
 
     /**
@@ -22,7 +22,9 @@ class SliderStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'slide' => 'required|image'
+            'content' => 'required|string',
+            'user_id' => 'required|exists:news,id',
+            'news_id' => 'required|exists:news,id',
         ];
     }
 }

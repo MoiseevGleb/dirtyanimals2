@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin\News;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SliderUpdateRequest extends FormRequest
+class StoreNewsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,9 @@ class SliderUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'slide' => 'required|image'
+            'title' => 'required|string',
+            'content' => 'required|string',
+            'show_author' => 'nullable|boolean',
         ];
     }
 }

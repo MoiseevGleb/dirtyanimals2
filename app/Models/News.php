@@ -13,12 +13,17 @@ class News extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title', 'content', 'user_id',
+        'title', 'content', 'user_id', 'show_author'
     ];
 
     public function getCreatedAtAttribute($attribute)
     {
-        return Carbon::parse($attribute)->diffForHumans();
+        return Carbon::parse($attribute)->timezone('Europe/Moscow')->translatedFormat('d.m.Y в H:i');
+    }
+
+    public function getUpdatedAtAttribute($attribute)
+    {
+        return Carbon::parse($attribute)->timezone('Europe/Moscow')->translatedFormat('j.m.Y в H:i');
     }
 
     public function comments(): HasMany

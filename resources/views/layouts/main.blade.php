@@ -65,7 +65,7 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end {{ request()->routeIs('private') ? 'active' : '' }}">
                                     <li>
-                                        <a class="dropdown-item" href="#"><i class="bi bi-person-circle mx-2"></i>Личный кабинет</a>
+                                        <a class="dropdown-item" href="{{ route('user.private.index') }}"><i class="bi bi-person-circle mx-2"></i>Личный кабинет</a>
                                     </li>
                                     @if(auth()->user()->role === 'admin')
                                         <li>

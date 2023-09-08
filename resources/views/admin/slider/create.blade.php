@@ -1,4 +1,4 @@
-@extends('layouts.private')
+@extends('layouts.admin_private')
 @section('title', 'Добавить слайд')
 
 @section('content')

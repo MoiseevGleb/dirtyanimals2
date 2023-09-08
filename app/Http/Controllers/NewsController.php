@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreNewsCommentRequest;
+use App\Http\Requests\Admin\News\Comments\StoreNewsCommentRequest;
 use App\Models\News;
 use App\Models\NewsComment;
 use App\Models\User;
@@ -21,7 +21,7 @@ class NewsController extends Controller
     public function getNews(): Collection|array
     {
         $news = News::query()
-            ->select('id', 'title', 'content', 'created_at', 'user_id')
+            ->select('id', 'title', 'content', 'created_at', 'user_id', 'show_author')
             ->with('comments.user', 'user:id,name')
             ->get();
 

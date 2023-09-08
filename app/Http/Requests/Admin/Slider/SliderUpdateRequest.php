@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin\Slider;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserStoreRequest extends FormRequest
+class SliderUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return true;
+        return auth()->user()->role === 'admin';
     }
 
     /**
@@ -22,9 +22,7 @@ class UserStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|min:2',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|confirmed|min:6',
+            'slide' => 'required|image'
         ];
     }
 }

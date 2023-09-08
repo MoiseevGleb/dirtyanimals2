@@ -1,18 +1,21 @@
-@extends('layouts.private')
+@extends('layouts.admin_private')
 @section('title', 'Редактировать слайды')
 
 @section('content')
     <h2 class="mb-5">Редактировать слайды</h2>
     @if(empty($slides))
-        <p>У вас не добавлено ни одного слайда, вы можете это сделать <a href="{{ route('admin.slider.create') }}">здесь</a></p>
+        <p>У вас не добавлено ни одного слайда, вы можете это сделать <a
+                    href="{{ route('admin.slider.create') }}">здесь</a></p>
     @else
         <div class="d-flex flex-wrap row-cols-4 gap-3">
             @foreach($slides as $k => $slide)
                 <div class="card p-3 col d-flex flex-column justify-content-between" style="width: 346px">
                     <h3>{{ $k+1 }} слайд: {{ substr(basename($slide), strpos(basename($slide), '_') + 1) }}</h3>
-                    <img id="slide" class="img-fluid rounded-3 mb-3" width="340" height="300" src="{{ asset($slide)}}" alt="{{ basename($slide) }}">
+                    <img id="slide" class="img-fluid rounded-3 mb-3" width="340" height="300" src="{{ asset($slide)}}"
+                         alt="{{ basename($slide) }}">
                     <div class="flex-row-reverse">
-                        <form action="{{ route('admin.slider.update', basename($slide)) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('admin.slider.update', basename($slide)) }}" method="POST"
+                              enctype="multipart/form-data">
                             @csrf
                             <h3>Изменить или удалить</h3>
                             <input name='slide' type="file" class="form-control" id="inputGroupFile02">

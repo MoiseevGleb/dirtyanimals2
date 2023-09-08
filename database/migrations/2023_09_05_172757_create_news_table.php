@@ -19,6 +19,8 @@ return new class extends Migration
 
             $table->text('content');
 
+            $table->boolean('show_author')->default(0);
+
             $table->foreignIdFor(User::class)
                 ->constrained()
                 ->cascadeOnUpdate()

@@ -21,6 +21,5 @@ class DatabaseSeeder extends Seeder
         Product::factory(100)->create();
 
         News::factory(10)->create();
-        //NewsComment::factory(68)->create();
     }
 }

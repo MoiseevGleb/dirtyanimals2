@@ -40,6 +40,7 @@ Route::group([
 
 Route::group([
     'namespace' => 'App\Http\Controllers\Admin',
+    'middleware' => 'auth',
     'prefix' => 'admin',
     'as' => 'admin.'
 ], function () {
@@ -56,6 +57,34 @@ Route::group([
         Route::post('/{slide}/update', 'update')->name('update');
         Route::post('/', 'store')->name('store');
     });
+
+    Route::group([
+        'controller' => 'NewsController',
+        'prefix' => 'news',
+        'as' => 'news.'
+    ], function () {
+
+        Route::get('/', 'index')->name('index');
+
+        Route::get('/create', 'create')->name('create');
+        Route::post('/create', 'store')->name('store');
+
+        Route::get('/{news}/edit', 'edit')->name('edit');
+        Route::patch('/{news}/edit', 'update')->name('update');
+
+        Route::delete('/{news}', 'destroy')->name('destroy');
+    });
+});
+
+Route::group([
+    'middleware' => 'auth',
+    'controller' => 'App\Http\Controllers\UserPrivateController',
+    'prefix' => 'user/private/',
+    'as' => 'user.private.'
+], function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/edit', 'edit')->name('edit');
+    Route::patch('/', 'update')->name('update');
 });
 
 Route::group([

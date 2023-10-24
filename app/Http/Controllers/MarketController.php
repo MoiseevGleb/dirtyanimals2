@@ -12,7 +12,7 @@ class MarketController extends Controller
         $slides = glob('storage/images/slider/*');
 
         $products = Product::query()
-            ->select(['id', 'title', 'price', 'img'])
+            ->select(['id', 'title', 'price', 'image'])
             ->paginate(12);
 
         return view('market.index', compact('products', 'slides'));

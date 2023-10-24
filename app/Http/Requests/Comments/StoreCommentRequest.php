@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin\News\Comments;
+namespace App\Http\Requests\Comments;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreNewsCommentRequest extends FormRequest
+class StoreCommentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,9 @@ class StoreNewsCommentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'content' => 'required|string',
+            'text' => 'required|string',
             'user_id' => 'required|exists:news,id',
-            'news_id' => 'required|exists:news,id',
+            'commentable_id' => 'required|exists:news,id',
         ];
     }
 }

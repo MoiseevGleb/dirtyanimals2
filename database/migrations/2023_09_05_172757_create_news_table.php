@@ -17,6 +17,8 @@ return new class extends Migration
 
             $table->string('title');
 
+            $table->string('slug')->unique();
+
             $table->text('content');
 
             $table->boolean('show_author')->default(0);

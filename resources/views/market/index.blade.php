@@ -23,7 +23,7 @@
             @foreach($products as $product)
                 <div class="col">
                     <a href="{{ route('market.show', [$product]) }}" class="text-decoration-none text-reset">
-                        <img alt="{{ $product->image }}" src="{{ asset(`/storage/images/products/{$product->image}`) }}" class="img-fluid mt-2 rounded-3">
+                        <img alt="{{ $product->image }}" src="{{ asset("/storage/images/products/{$product->image}") }}" class="img-fluid mt-2 rounded-3">
                         <p class="mt-2 m-0">{{ $product->price }} ₽</p>
                         <h5>{{ $product->title }}</h5>
                     </a>

@@ -16,7 +16,7 @@
             {{ session('message') }}
         </div>
     @endif
-    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top shadow">
         <div class="container-fluid">
             <a href="{{ route('home') }}" class="text-decoration-none text-reset d-flex">
                 <img src="{{ asset('/storage/images/logo.svg') }}" alt="logo.svg" height="60" width="80">

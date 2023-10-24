@@ -19,7 +19,7 @@ class NewsFactory extends Factory
         return [
             'title' => fake()->sentence(),
             'content' => fake()->realText(),
-            'user_id' => 1,
+            'show_author' => fake()->boolean(),
         ];
     }
 }

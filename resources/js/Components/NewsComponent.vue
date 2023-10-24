@@ -11,8 +11,9 @@ const getNews = async () => {
 }
 
 const sendMessage = async (content, news_id, user_id) => {
-    await axios.post('/news/comments', {content: content, news_id: news_id, user_id: user_id})
+    await axios.post('/news/comments', {text: content, commentable_id: news_id, user_id: user_id})
         .then( response => {
+            console.log(response);
             news.value[news_id - 1].comments.push(response.data)
             comment.value[news_id] = ''
         })
@@ -30,7 +31,7 @@ onMounted(getNews)
         <div class="card p-3" v-for="news_item in news" :key="news_item.id">
             <h1>{{ news_item.title }}</h1>
             <p>{{ news_item.content }}</p>
-            <p v-if="news_item.show_author === 1" class="m-0">Автор: {{ news_item.user.name }}</p>
+            <p v-if="news_item.show_author === true" class="m-0">Автор: {{ news_item.user.name }}</p>
             <p>Дата и время публикации: {{ news_item.created_at }}</p>
             <div class="card-body border-top pt-3 p-0">
                 <div class="input-group">
@@ -45,11 +46,11 @@ onMounted(getNews)
                                 <img height="50" width="50" class="rounded-circle" alt="" :src="'storage/images/avatars/' + comment.user.pfp">
                                 <div class="d-flex flex-column">
                                     <p class="m-0">{{ comment.user.name }}</p>
-                                    <p class="m-0">{{ comment.content }}</p>
+                                    <p class="m-0">{{ comment.text }}</p>
                                 </div>
                             </div>
                         </div>
-                        <p class="m-0 align-self-end mt-2">{{ comment.created_at }}</p>
+                        <p class="m-0 align-self-end mt-2 text-secondary">{{ comment.created_at }}</p>
                     </div>
                 </div>
             </div>

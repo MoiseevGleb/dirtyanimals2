@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\NewsComment>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Comment>
  */
-class NewsCommentFactory extends Factory
+class CommentFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,9 +17,7 @@ class NewsCommentFactory extends Factory
     public function definition(): array
     {
         return [
-            'content' => fake()->realText(),
-            'user_id' => 1,
-            'news_id' => fake()->numberBetween(1, 10),
+            'text' => fake()->realText(),
         ];
     }
 }

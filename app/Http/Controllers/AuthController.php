@@ -27,7 +27,7 @@ class AuthController extends Controller
         $credentials = $request->only(['email', 'password']);
         if (auth()->attempt($credentials)) {
             session()->regenerate();
-            return redirect()->route('home')->withMessage('Вы успешно авторизованы');
+            return redirect()->intended('home')->withMessage('Вы успешно авторизованы');
         }
         return back()->withInput()->withMessage('Неверный логин или пароль');
     }
